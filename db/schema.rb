@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_19_091043) do
+ActiveRecord::Schema.define(version: 2021_04_20_082359) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,14 +27,16 @@ ActiveRecord::Schema.define(version: 2021_04_19_091043) do
 
   create_table "jobs", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.string "pick_up_address"
-    t.string "drop_off_address"
-    t.decimal "pick_up_longtitude", precision: 10, scale: 6
-    t.decimal "pick_up_latitude", precision: 10, scale: 6
-    t.decimal "drop_off_longtitude", precision: 10, scale: 6
-    t.decimal "drop_off_latitude", precision: 10, scale: 6
+    t.string "pick_up_address", null: false
+    t.string "drop_off_address", null: false
+    t.decimal "pick_up_longtitude", precision: 10, scale: 6, null: false
+    t.decimal "pick_up_latitude", precision: 10, scale: 6, null: false
+    t.decimal "drop_off_longtitude", precision: 10, scale: 6, null: false
+    t.decimal "drop_off_latitude", precision: 10, scale: 6, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "title", null: false
+    t.string "description"
     t.index ["user_id"], name: "index_jobs_on_user_id"
   end
 
