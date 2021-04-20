@@ -1,0 +1,36 @@
+<%= form_with model: @job do |f| %>
+  <div class="field">
+    <%= f.label :title %><br />
+    <%= f.text_field :title, autofocus: true %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_field :description, autofocus: true %>
+  </div>
+  <div class="field">
+    <%= f.label :pick_up_address %><br />
+    <%= f.text_field :pick_up_address, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :pick_up_latitude %><br />
+    <%= f.text_field :pick_up_latitude, autofocus: true %>
+  </div>
+  <div class="field">
+    <%= f.label :pick_up_longtitude %><br />
+    <%= f.text_field :pick_up_longtitude, autofocus: true %>
+  </div>
+  <div class="field">
+    <%= f.label :drop_off_address %><br />
+    <%= f.text_field :drop_off_address, autofocus: true %>
+  </div>
+  <div class="field">
+    <%= f.label :drop_off_latitude %><br />
+    <%= f.text_field :drop_off_latitude, autofocus: true %>
+  </div>
+  <div class="field">
+    <%= f.label :drop_off_longtitude %><br />
+    <%= f.text_field :drop_off_longtitude, autofocus: true %>
+  </div>
+  <%= f.submit "Create" %>
+<% end %>
