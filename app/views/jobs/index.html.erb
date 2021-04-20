@@ -1,8 +1,8 @@
 <h1>Work better with us</h1>
-	<%= link_to new_user_session_path do %>Sign In<% end %>
-    # <%= link_to new_user_registration_path do %>Sign Up<% end %>
-<p>Find me in app/views/job/index.html.erb</p>
 
 <% @jobs.each do |job| %>
-    <%= link_to job.pick_up_address %>
-<% end %>
+    <%= job.title %>
+    <%= link_to "Show", job_path(job), class: "button" %>
+<% end %><br />
+
+<%= link_to "Create job", new_job_path, class: "button" %>
