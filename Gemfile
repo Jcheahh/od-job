@@ -7,6 +7,8 @@ ruby '2.7.0'
 gem 'rails', '~> 6.1.3', '>= 6.1.3.1'
 # Devise
 gem 'devise'
+# Bootstrap
+gem 'bootstrap', '~> 4.2.1'
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 1.1'
 # Use Puma as the app server
