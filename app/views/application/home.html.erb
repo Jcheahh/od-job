@@ -1,5 +1,9 @@
-<span>Home</span>
-<h1>Work better with us</h1>
-	<%= link_to new_user_session_path, class: 'login-button' do %>Log In<% end %>
-    <%= link_to new_user_registration_path do %>Sign Up<% end %>
-<p>Find me in app/views/job/index.html.erb</p>
+<div class="navbar">
+    <%= link_to "Home", jobs_path %>
+    <div class="my-2 my-lg-0">
+        <%= link_to new_user_session_path, class: 'login-button m-3' do %>Log In<% end %>
+        <%= link_to new_user_registration_path do %>Sign Up<% end %>
+    </div>
+</div>
+<h1 class="display">Work better with us</h1>
+<p class="display">Find me in app/views/job/index.html.erb</p>
