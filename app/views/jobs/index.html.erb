@@ -1,8 +1,17 @@
-<h1>Work better with us</h1>
+<div class="navbar">
+  <%= link_to "Home", jobs_path %>
+  <div class="my-2 my-lg-0">
+    <%= link_to "Create job", new_job_path, class: "button m-3 btn btn-outline-success" %>
+    <%= link_to "Logout", destroy_user_session_path, :method => :delete %>
+  </div>
+</div>
 
+<h1>Work better with us</h1>
 <% @jobs.each do |job| %>
+  <div>
     <%= job.title %>
     <%= link_to "Show", job_path(job), class: "button" %>
-<% end %><br />
+  </div>
+<% end %>
 
 <%= link_to "Create job", new_job_path, class: "button" %>
