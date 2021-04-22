@@ -8,9 +8,16 @@ class ClaimsController < ApplicationController
   def show; end
 
   def create
-    @claim = current_user.claims.create!(claim_params)
+    @job = Job.find(claim_params[:job_id])
+    if @job.user_id != current_user.id
+      @claim = current_user.claims.create!(claim_params)
 
-    redirect_to jobs_path
+      redirect_to jobs_path
+    else
+      flash[:danger] = "Cannot claim your own job!"
+
+      redirect_to @job
+    end
   end
 
   private
