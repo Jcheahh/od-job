@@ -1,36 +1,41 @@
+<div class="navbar">
+  <%= link_to "Home", jobs_path %>
+  <%= link_to "Logout", destroy_user_session_path, :method => :delete %>
+</div>
+<h2>Please write down your job details</h2>
 <%= form_with model: @job do |f| %>
   <div class="field">
     <%= f.label :title %><br />
-    <%= f.text_field :title, autofocus: true %>
+    <%= f.text_field :title, {placeholder: "Enter title"} %>
   </div>
   <div class="field">
     <%= f.label :description %><br />
-    <%= f.text_field :description, autofocus: true %>
+    <%= f.text_field :description, {placeholder: "Enter your description"} %>
   </div>
   <div class="field">
     <%= f.label :pick_up_address %><br />
-    <%= f.text_field :pick_up_address, autofocus: true %>
+    <%= f.text_field :pick_up_address, {placeholder: "Enter your pick up address"} %>
   </div>
 
   <div class="field">
     <%= f.label :pick_up_latitude %><br />
-    <%= f.text_field :pick_up_latitude, autofocus: true %>
+    <%= f.text_field :pick_up_latitude, {placeholder: "Enter your pick up latitude"} %>
   </div>
   <div class="field">
     <%= f.label :pick_up_longtitude %><br />
-    <%= f.text_field :pick_up_longtitude, autofocus: true %>
+    <%= f.text_field :pick_up_longtitude, {placeholder: "Enter your pick up longtitude"} %>
   </div>
   <div class="field">
     <%= f.label :drop_off_address %><br />
-    <%= f.text_field :drop_off_address, autofocus: true %>
+    <%= f.text_field :drop_off_address, {placeholder: "Enter your drop off address"} %>
   </div>
   <div class="field">
     <%= f.label :drop_off_latitude %><br />
-    <%= f.text_field :drop_off_latitude, autofocus: true %>
+    <%= f.text_field :drop_off_latitude, {placeholder: "Enter your drop off latitude"} %>
   </div>
   <div class="field">
     <%= f.label :drop_off_longtitude %><br />
-    <%= f.text_field :drop_off_longtitude, autofocus: true %>
+    <%= f.text_field :drop_off_longtitude, {placeholder: "Enter your drop off longtitude"} %>
   </div>
   <%= f.submit "Create" %>
 <% end %>
