@@ -1,6 +1,6 @@
 class JobsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_job, only: [:show, :destroy]
+  before_action :set_job, only: [:destroy]
 
   def index
     @jobs = Job.all
@@ -10,16 +10,26 @@ class JobsController < ApplicationController
     @job = Job.new
   end
 
-  def show; end
+  def show
+    @job = Job.left_outer_joins(:claim).select("jobs.*, (claims.job_id IS NOT NULL) AS claimed").find(params[:id])
+  end
 
   def create
-    @job = current_user.jobs.create!(job_params)
+    @job = job_params[:title]
+    if @job.nil?
+      @job = current_user.jobs.create!(job_params)
 
-    redirect_to jobs_path
+      redirect_to jobs_path
+    else
+      flash[:danger] = "Fill in the blank space"
+
+      redirect_to new_job_path
+    end
   end
 
   def destroy
     @job = current_user.jobs.find(params[:id])
+
     if @job.claim.nil?
       @job.destroy
 
