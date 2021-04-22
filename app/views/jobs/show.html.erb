@@ -1,8 +1,25 @@
+<div class="navbar">
+  <%= link_to "Home", jobs_path %>
+  <%= link_to "Logout", destroy_user_session_path, :method => :delete %>
+</div>
 <h1>Jobs</h1>
+<div class="col">
+  <p class="row">
+    Title: <%= @job.title %>
+  </p>
+  <p class="row">
+    Description: <%= @job.description %>
+  </p>
+  <p class="row">
+    Pick up address: <%= @job.pick_up_address %>
+  </p>
+  <p class="row">
+    Drop off address: <%= @job.drop_off_address %>
+  </p>
+</div>
 
-<%= @job.title %>
-<%= @job.description %>
-<%= @job.pick_up_address %>
-<%= @job.drop_off_address %><br />
+<%= button_to 'Claim job', {:controller => "claims", :action => "create", :job_id => @job.id, :user_id => session[:user_id]} , :method =>:post %>
+<% if @job.user_id == current_user.id %>
+  <%= button_to "Delete", {:controller => "jobs", :action => "destroy", :user_id => session[:user_id]} , :method =>:delete %>
+<% end %>
 
-<%= button_to 'Claim job', {:controller => "claims", :action => "create", :job_id => @job.id, :user_id=> session[:user_id]} , :method=>:post %>
