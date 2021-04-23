@@ -2,7 +2,7 @@ class ClaimsController < ApplicationController
   before_action :set_claim, only: [:show]
 
   def index
-    @claims = Claim.all
+    @claims = current_user.claims.joins(:job)
   end
 
   def show; end
