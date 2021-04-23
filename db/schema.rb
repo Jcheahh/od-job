@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_22_145122) do
+ActiveRecord::Schema.define(version: 2021_04_23_133554) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,9 +29,9 @@ ActiveRecord::Schema.define(version: 2021_04_22_145122) do
     t.bigint "user_id", null: false
     t.string "pick_up_address", null: false
     t.string "drop_off_address", null: false
-    t.decimal "pick_up_longtitude", precision: 10, scale: 6, null: false
+    t.decimal "pick_up_longitude", precision: 10, scale: 6, null: false
     t.decimal "pick_up_latitude", precision: 10, scale: 6, null: false
-    t.decimal "drop_off_longtitude", precision: 10, scale: 6, null: false
+    t.decimal "drop_off_longitude", precision: 10, scale: 6, null: false
     t.decimal "drop_off_latitude", precision: 10, scale: 6, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
