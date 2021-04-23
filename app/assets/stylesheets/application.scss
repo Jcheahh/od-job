@@ -1,6 +1,10 @@
 @import "bootstrap/scss/bootstrap";
 @import url("https://fonts.googleapis.com/css?family=Merriweather:400,700");
 
+// * {
+//     font-size: 16px;
+// }
+
 h1,
 h2 {
     font-weight: bold;
@@ -10,4 +14,46 @@ p {
 }
 a:visited {
     color: $black;
+}
+
+.display {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.space {
+    justify-content: space-between;
+}
+
+.job-title-group {
+    margin: 15px 0;
+}
+
+.job-title {
+    font-weight: 600;
+    font-size: 24px;
+}
+
+.job-content {
+    margin: 40px 0;
+}
+
+.job-content-body {
+    margin-top: 40px;
+}
+
+.job-content-description {
+    margin-bottom: 40px;
+}
+
+.job-content-title {
+    font-size: 25px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    display: block;
+}
+
+.job-content-subtitle {
+    font-weight: 600;
 }

@@ -1,27 +1,32 @@
-<div class="navbar">
-  <%= link_to "Home", jobs_path %>
-  <%= link_to "Logout", destroy_user_session_path, :method => :delete %>
+<div class="job-content">
+  <h1><%= @job.title %></h1>
+  <div class="job-content-body">
+    <div class="job-content-description">
+      <span class="job-content-title">
+        About this job
+      </span>
+      <p><%= @job.description %></p>
+    </div>
+    <span class="job-content-subtitle">
+      Pick up address
+    </span>
+    <p>
+      <%= link_to @job.pick_up_address, "https://www.google.com/maps/search/?api=1&query=#{@job.pick_up_latitude},#{@job.pick_up_longitude}", target: "_blank" %>
+    </p>
+    <span class="job-content-subtitle">
+      Drop off address 
+    </span>
+    <p>
+      <%= link_to @job.drop_off_address, "https://www.google.com/maps/search/?api=1&query=#{@job.drop_off_latitude},#{@job.drop_off_longitude}", target: "_blank" %>
+    </p>
+  </div>
+  <% if @job.user_id == current_user.id %>
+    <%= button_to "Delete", {controller: "jobs", action: "destroy", user_id: session[:user_id]} , method: :delete, class: "btn btn-danger" %>
+  <% else %>
+    <% if !@job.claimed %>
+      <%= button_to 'Claim job', {controller: "claims", action: "create", job_id: @job.id, user_id: session[:user_id]} , method: :post, class: "btn btn-success" %>
+    <% else %>
+      <button class="btn btn-dark disabled">Claimed</button>
+    <% end %>
+  <% end %>
 </div>
-<h1>Jobs</h1>
-<div class="col">
-  <p class="row">
-    Title: <%= @job.title %>
-  </p>
-  <p class="row">
-    Description: <%= @job.description %>
-  </p>
-  <p class="row">
-    Pick up address: <%= @job.pick_up_address %>
-  </p>
-  <p class="row">
-    Drop off address: <%= @job.drop_off_address %>
-  </p>
-</div>
-
-<% if !@job.claimed && @job.user_id != current_user.id %>
-  <%= button_to 'Claim job', {:controller => "claims", :action => "create", :job_id => @job.id, :user_id => session[:user_id]} , :method =>:post %>
-<% end %>
-<% if @job.user_id == current_user.id %>
-  <%= button_to "Delete", {:controller => "jobs", :action => "destroy", :user_id => session[:user_id]} , :method =>:delete %>
-<% end %>
-
