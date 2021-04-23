@@ -1,5 +1,33 @@
-<br /><br />
-<% @claims.each do |claim| %>
-    <%= claim.status %>
-    <%= claim.job_id %>
-<% end %>
+<h1>Your claimed job</h1>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Title</th>
+      <th scope="col">Description</th>
+      <th scope="col">Pick up address</th>
+      <th scope="col">Drop off address</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @claims.each do |claim| %>
+      <tr>
+        <th scope="row">
+          <%= claim.status %>
+        </th>
+        <td>
+          <%= claim.job.title %>
+        </td>
+        <td>
+          <%= claim.job.description %>
+        </td>
+        <td>
+          <%= claim.job.pick_up_address %>
+        </td>
+        <td>
+          <%= claim.job.drop_off_address %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
