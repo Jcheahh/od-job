@@ -1,41 +1,64 @@
-<div class="navbar">
-  <%= link_to "Home", jobs_path %>
-  <%= link_to "Logout", destroy_user_session_path, :method => :delete %>
-</div>
 <h2>Please write down your job details</h2>
 <%= form_with model: @job do |f| %>
-  <div class="field">
-    <%= f.label :title %><br />
-    <%= f.text_field :title, {placeholder: "Enter title"} %>
+  <div class="field form-group">
+    <%= f.label :title %>
+    <%= f.text_field :title, placeholder: "Enter title", class: "form-control" %>
   </div>
-  <div class="field">
-    <%= f.label :description %><br />
-    <%= f.text_field :description, {placeholder: "Enter your description"} %>
+  <div class="field form-group">
+    <%= f.label :description %>
+    <%= f.text_field :description, placeholder: "Enter your description", class: "form-control" %>
   </div>
-  <div class="field">
-    <%= f.label :pick_up_address %><br />
-    <%= f.text_field :pick_up_address, {placeholder: "Enter your pick up address"} %>
+  <div class="field form-group">
+    <%= f.label :pick_up_address %>
+    <%= f.text_field :pick_up_address, placeholder: "Enter your pick up address", class: "form-control", id: "pick-up-address" %>
   </div>
-
-  <div class="field">
-    <%= f.label :pick_up_latitude %><br />
-    <%= f.text_field :pick_up_latitude, {placeholder: "Enter your pick up latitude"} %>
+  <div class="field form-group">
+    <%= f.label :pick_up_latitude %>
+    <%= f.text_field :pick_up_latitude, placeholder: "Enter your pick up latitude", class: "form-control", id: "pick-up-lat" %>
   </div>
-  <div class="field">
-    <%= f.label :pick_up_longtitude %><br />
-    <%= f.text_field :pick_up_longtitude, {placeholder: "Enter your pick up longtitude"} %>
+  <div class="field form-group">
+    <%= f.label :pick_up_longitude %>
+    <%= f.text_field :pick_up_longitude, placeholder: "Enter your pick up longitude", class: "form-control", id: "pick-up-lng" %>
   </div>
-  <div class="field">
-    <%= f.label :drop_off_address %><br />
-    <%= f.text_field :drop_off_address, {placeholder: "Enter your drop off address"} %>
+  <div class="field form-group">
+    <%= f.label :drop_off_address %>
+    <%= f.text_field :drop_off_address, placeholder: "Enter your drop off address", class: "form-control", id: "drop-off-address" %>
   </div>
-  <div class="field">
-    <%= f.label :drop_off_latitude %><br />
-    <%= f.text_field :drop_off_latitude, {placeholder: "Enter your drop off latitude"} %>
+  <div class="field form-group">
+    <%= f.label :drop_off_latitude %>
+    <%= f.text_field :drop_off_latitude, placeholder: "Enter your drop off latitude", class: "form-control", id: "drop-off-lat" %>
   </div>
-  <div class="field">
-    <%= f.label :drop_off_longtitude %><br />
-    <%= f.text_field :drop_off_longtitude, {placeholder: "Enter your drop off longtitude"} %>
+  <div class="field form-group">
+    <%= f.label :drop_off_longitude %>
+    <%= f.text_field :drop_off_longitude, placeholder: "Enter your drop off longitude", class: "form-control", id: "drop-off-lng" %>
   </div>
-  <%= f.submit "Create" %>
+  <%= f.submit "Create", class: "btn btn-outline-success" %>
 <% end %>
+<script>
+  function setupAutocomplete(id, callback) {
+    const input = document.getElementById(id);
+    const options = {
+      componentRestrictions: { country: "my" },
+      fields: ["geometry"],
+      strictBounds: false,
+    };
+    const autocomplete = new google.maps.places.Autocomplete(input, options);
+  
+    autocomplete.addListener("place_changed", () => {
+      const place = autocomplete.getPlace();
+      console.log(place.geometry.location)
+      callback(place.geometry.location.lat(), place.geometry.location.lng());
+    });
+  }
+  function initializeAutocomplete(params) {
+    setupAutocomplete("pick-up-address", (lat, lng) => {
+      document.getElementById("pick-up-lat").value = lat;
+      document.getElementById("pick-up-lng").value = lng;
+    });
+  
+    setupAutocomplete("drop-off-address", (lat, lng) => {
+      document.getElementById("drop-off-lat").value = lat;
+      document.getElementById("drop-off-lng").value = lng;
+    });
+  }
+</script>
