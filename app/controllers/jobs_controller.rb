@@ -3,7 +3,9 @@ class JobsController < ApplicationController
   before_action :set_job, only: [:destroy]
 
   def index
-    @jobs = Job.all
+    lat = params[:lat] || "3.1466"
+    lng = params[:lng] || "101.6958"
+    @jobs = Job.joins(:user).near("#{lat},#{lng}", 60).order(:distance)
   end
 
   def new
@@ -15,13 +17,12 @@ class JobsController < ApplicationController
   end
 
   def create
-    @job = job_params[:title]
-    if @job.nil?
-      @job = current_user.jobs.create!(job_params)
+    @job = current_user.jobs.create(job_params)
 
+    if @job.valid?
       redirect_to jobs_path
     else
-      flash[:danger] = "Fill in the blank space"
+      flash[:danger] = @job.errors.full_messages.join("\n")
 
       redirect_to new_job_path
     end
@@ -48,7 +49,7 @@ class JobsController < ApplicationController
   end
 
   def job_params
-    params.require(:job).permit(:title, :description, :pick_up_address, :drop_off_address, :pick_up_latitude, :pick_up_longtitude, :drop_off_latitude,
-                                :drop_off_longtitude)
+    params.require(:job).permit(:title, :description, :pick_up_address, :drop_off_address, :pick_up_latitude, :pick_up_longitude, :drop_off_latitude,
+                                :drop_off_longitude)
   end
 end
