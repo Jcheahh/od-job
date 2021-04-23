@@ -1,9 +1,15 @@
-<div class="navbar">
-    <%= link_to "Home", jobs_path %>
-    <div class="my-2 my-lg-0">
-        <%= link_to new_user_session_path, class: 'login-button m-3' do %>Log In<% end %>
-        <%= link_to new_user_registration_path do %>Sign Up<% end %>
-    </div>
+<% content_for :navbar do %>
+  <li class="nav-item">
+    <%= link_to "Log In", new_user_session_path, class: "m-3" %>
+  </li>
+  <li class="nav-item">
+    <%= link_to "Sign Up", new_user_registration_path  %>
+  </li>
+<% end %>
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4">Work better with us</h1>
+    <p class="lead py-3">GoGet is a community platform for reliable and skilled part time help. Empower the community to achieve greater productivity and connectivity in everyday work.</p>
+    <%= link_to "Create job", new_job_path, class: "button btn btn-outline-success" %>
+  </div>
 </div>
-<h1 class="display">Work better with us</h1>
-<p class="display">Find me in app/views/job/index.html.erb</p>
