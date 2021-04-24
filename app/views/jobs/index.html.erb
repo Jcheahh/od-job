@@ -1,5 +1,8 @@
 <% content_for :navbar do %>
   <li class="nav-item">
+    <%= link_to "Your Jobs", mine_jobs_path, class: "nav-link" %>
+  </li>
+  <li class="nav-item">
     <%= link_to "View Claimed Jobs", claims_path, class: "nav-link" %>
   </li>
   <%= link_to "Create job", new_job_path, class: "button m-3 btn btn-outline-success", class: "btn btn-outline-success my-2 my-sm-0" %>
@@ -11,7 +14,7 @@
   <div class="container">
     <h1 class="display-4">Work better with us</h1>
     <p class="lead py-3">GoGet is a community platform for reliable and skilled part time help. Empower the community to achieve greater productivity and connectivity in everyday work.</p>
-    <%= link_to "Create job", new_job_path, class: "button btn btn-outline-success" %>
+    <%= link_to "Create job", new_job_path, class: "button btn btn-success" %>
   </div>
 </div>
 <h2>Job List</h2>
