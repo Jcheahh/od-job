@@ -8,6 +8,10 @@ class JobsController < ApplicationController
     @jobs = Job.joins(:user).near("#{lat},#{lng}", 60).order(:distance)
   end
 
+  def mine
+    @job = current_user.jobs
+  end
+
   def new
     @job = Job.new
   end
