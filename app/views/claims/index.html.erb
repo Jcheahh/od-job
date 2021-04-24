@@ -1,10 +1,13 @@
 <h1>Your claimed job</h1>
-<table class="table">
+<table class="table table-striped", style="width: 100%">
+  <colgroup>
+    <col span="1" style="width: 50%;">
+    <col span="1" style="width: 25%;">
+    <col span="1" style="width: 25%;">
+  </colgroup>
   <thead>
     <tr>
-      <th scope="col">#</th>
       <th scope="col">Title</th>
-      <th scope="col">Description</th>
       <th scope="col">Pick up address</th>
       <th scope="col">Drop off address</th>
     </tr>
@@ -12,20 +15,14 @@
   <tbody>
     <% @claims.each do |claim| %>
       <tr>
-        <th scope="row">
-          <%= claim.status %>
-        </th>
-        <td>
-          <%= claim.job.title %>
+        <td colspan="1">
+          <%= link_to claim.job.title, claim.job %>
         </td>
         <td>
-          <%= claim.job.description %>
+          <%= link_to claim.job.pick_up_address, "https://www.google.com/maps/search/?api=1&query=#{claim.job.pick_up_latitude},#{claim.job.pick_up_longitude}", target: "_blank" %>
         </td>
         <td>
-          <%= claim.job.pick_up_address %>
-        </td>
-        <td>
-          <%= claim.job.drop_off_address %>
+          <%= link_to claim.job.drop_off_address, "https://www.google.com/maps/search/?api=1&query=#{claim.job.drop_off_latitude},#{claim.job.drop_off_longitude}", target: "_blank" %>
         </td>
       </tr>
     <% end %>
