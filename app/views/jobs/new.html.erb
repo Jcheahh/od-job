@@ -6,7 +6,7 @@
   </div>
   <div class="field form-group">
     <%= f.label :description %>
-    <%= f.text_field :description, placeholder: "Enter your description", class: "form-control" %>
+    <%= f.text_area :description, placeholder: "Enter your description", class: "form-control" %>
   </div>
   <div class="field form-group">
     <%= f.label :pick_up_address %>
@@ -50,6 +50,7 @@
       callback(place.geometry.location.lat(), place.geometry.location.lng());
     });
   }
+  
   function initializeAutocomplete(params) {
     setupAutocomplete("pick-up-address", (lat, lng) => {
       document.getElementById("pick-up-lat").value = lat;
