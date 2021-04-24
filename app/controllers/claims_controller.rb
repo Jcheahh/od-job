@@ -5,8 +5,6 @@ class ClaimsController < ApplicationController
     @claims = current_user.claims.joins(:job)
   end
 
-  def show; end
-
   def create
     @job = Job.find(claim_params[:job_id])
     if @job.user_id != current_user.id
