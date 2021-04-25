@@ -28,7 +28,7 @@ class JobsController < ApplicationController
     else
       flash[:danger] = @job.errors.full_messages.join("\n")
 
-      redirect_to new_job_path
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -42,7 +42,7 @@ class JobsController < ApplicationController
     else
       flash[:danger] = "This job is claimed"
 
-      redirect_to @job
+      render :show, status: :method_not_allowed
     end
   end
 
